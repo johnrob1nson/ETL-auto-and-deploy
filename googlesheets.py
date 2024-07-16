@@ -23,10 +23,7 @@ def post_to_sheets(data, sheet_id, credentials_file_name):
             scopes
         )
         gc = gspread.authorize(credentials)
-
         sheet = gc.open_by_key(sheet_id)
-
-        logger.error("Ошибка отправки: %s", R)
         sheet_info = sheet.get_worksheet(0)
         # Формируем название колонок
         col_name = [data.index.name] + data.columns.values.tolist()

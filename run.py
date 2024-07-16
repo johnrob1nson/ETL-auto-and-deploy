@@ -18,8 +18,8 @@ EMAIL = config['Email']
 
 name_file = f'{date.today()}.log'
 
-START = datetime.combine(datetime.now() - timedelta(days=2), time.min)
-END = datetime.combine(datetime.now() - timedelta(days=2), time.max)
+START = datetime.combine(datetime.now() - timedelta(days=1), time.min)
+END = datetime.combine(datetime.now() - timedelta(days=1), time.max)
 
 get_logs(name_file, LOGS['logs_path'])
 
