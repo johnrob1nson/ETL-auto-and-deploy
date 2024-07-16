@@ -8,7 +8,7 @@ from googlesheets import post_to_sheets
 from email_report import Email
 
 config = configparser.ConfigParser(interpolation=None)
-config.read('config.ini', encoding="utf-8")
+config.read('config.ini', encoding='UTF-8')
 
 LOGS = config['Logs']
 PARAMS = config['Params']
@@ -18,8 +18,8 @@ EMAIL = config['Email']
 
 name_file = f'{date.today()}.log'
 
-START = datetime.combine(datetime.now() - timedelta(days=1), time.min)
-END = datetime.combine(datetime.now() - timedelta(days=1), time.max)
+START = datetime.combine(datetime.now() - timedelta(days=2), time.min)
+END = datetime.combine(datetime.now() - timedelta(days=2), time.max)
 
 get_logs(name_file, LOGS['logs_path'])
 
@@ -43,3 +43,5 @@ if __name__ == '__main__':
     em = Email(EMAIL['smtp_email'], EMAIL['port'], EMAIL['your_email'], EMAIL['password'])
     check_result = em.check_api_error(START, END, LOGS['logs_path'])
     em.send_email(EMAIL['subject'], EMAIL['body'], EMAIL['recipient_email'], check_result[0], check_result[1])
+
+

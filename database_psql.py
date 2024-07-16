@@ -1,16 +1,17 @@
 from logging import getLogger
 import psycopg2
 
-
 logger = getLogger(__name__)
 
 
 # Класс для работы с PostgreSQL. Метод send_to_sql служит для отправки данных в базу.
 class PGDatabase:
+    _instance = None
+
     def __new__(cls, *args, **kwargs):
         if not hasattr(cls, 'instance'):
-            cls.instance = super(PGDatabase, cls).__new__(cls)
-        return cls.instance
+            cls._instance = super().__new__(cls)
+        return cls._instance
 
     def __init__(self, database, user, password, host, port):
         self.database = database
@@ -33,6 +34,8 @@ class PGDatabase:
             logger.error('Ошибка подключения %s', CE)
         except TypeError as TE:
             logger.error('Ошибка загрузки данных %s', TE)
+        except UnicodeDecodeError as UE:
+            logger.error('Ошибка подключения %s', UE)
 
     def send_to_sql(self, data):
         logger.info('Загружаем данные в базу данных "%s"', self.database)

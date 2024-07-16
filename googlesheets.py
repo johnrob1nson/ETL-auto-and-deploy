@@ -4,6 +4,7 @@ from oauth2client.service_account import ServiceAccountCredentials
 import pandas as pd
 from logging import getLogger
 
+
 logger = getLogger(__name__)
 
 
@@ -16,15 +17,16 @@ def post_to_sheets(data, sheet_id, credentials_file_name):
               'https://www.googleapis.com/auth/drive.file',
               'https://www.googleapis.com/auth/drive'
               ]
-
-    credentials = ServiceAccountCredentials.from_json_keyfile_name(
-        os.getcwd() + f'\\{credentials_file_name}',
-        scopes
-    )
-    gc = gspread.authorize(credentials)
-
-    sheet = gc.open_by_key(sheet_id)
     try:
+        credentials = ServiceAccountCredentials.from_json_keyfile_name(
+            os.getcwd() + f'\\{credentials_file_name}',
+            scopes
+        )
+        gc = gspread.authorize(credentials)
+
+        sheet = gc.open_by_key(sheet_id)
+
+        logger.error("Ошибка отправки: %s", R)
         sheet_info = sheet.get_worksheet(0)
         # Формируем название колонок
         col_name = [data.index.name] + data.columns.values.tolist()
@@ -43,8 +45,14 @@ def post_to_sheets(data, sheet_id, credentials_file_name):
                         continue
                     else:
                         sheet.sheet1.append_row(rows)
-            except Exception as e:
-                logger.error("Ошибка отправки: %s", e)
+
+            except Exception as E:
+                logger.error("Ошибка отправки: %s", E)
         logger.info('Загрузка завершена')
+    except ReferenceError as R:
+        logger.error("Ошибка подключения: %s", R)
     except Exception as e:
         logger.error("Ошибка подключения: %s", e)
+
+
+

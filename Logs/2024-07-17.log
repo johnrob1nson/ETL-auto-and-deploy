@@ -1,0 +1,12 @@
+2024-07-17 00:25:10,329 : api : INFO : Подключаемся к API
+2024-07-17 00:25:10,329 : api : INFO : Скачиваем данные из https://b2b.itresume.ru/api/statistics
+2024-07-17 00:25:41,722 : api : INFO : Скачивание завершено
+2024-07-17 00:25:41,842 : api : INFO : Обработка данных завершена
+2024-07-17 00:25:41,843 : database_psql : INFO : Подключаемся к базе данных PostgreSQL "API"
+2024-07-17 00:25:41,913 : database_psql : ERROR : Ошибка подключения 'utf-8' codec can't decode byte 0xc2 in position 61: invalid continuation byte
+2024-07-17 00:26:30,968 : api : INFO : Подключаемся к API
+2024-07-17 00:26:30,968 : api : INFO : Скачиваем данные из https://b2b.itresume.ru/api/statistics
+2024-07-17 00:26:59,297 : api : INFO : Скачивание завершено
+2024-07-17 00:26:59,417 : api : INFO : Обработка данных завершена
+2024-07-17 00:26:59,418 : database_psql : INFO : Подключаемся к базе данных PostgreSQL "API"
+2024-07-17 00:26:59,476 : database_psql : ERROR : Ошибка подключения 'utf-8' codec can't decode byte 0xc2 in position 61: invalid continuation byte
