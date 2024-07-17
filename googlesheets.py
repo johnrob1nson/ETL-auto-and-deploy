@@ -4,7 +4,7 @@ from oauth2client.service_account import ServiceAccountCredentials
 import pandas as pd
 from logging import getLogger
 
-
+dir_name = os.path.dirname(__file__)
 logger = getLogger(__name__)
 
 
@@ -19,7 +19,7 @@ def post_to_sheets(data, sheet_id, credentials_file_name):
               ]
     try:
         credentials = ServiceAccountCredentials.from_json_keyfile_name(
-            os.getcwd() + f'\\{credentials_file_name}',
+            os.path.join(dir_name, credentials_file_name),
             scopes
         )
         gc = gspread.authorize(credentials)

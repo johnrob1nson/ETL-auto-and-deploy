@@ -1,6 +1,5 @@
 import ast
 import requests
-import json
 from collections import OrderedDict
 from logging import getLogger
 

@@ -1,12 +1,13 @@
 import os
 from logging import getLogger, basicConfig, INFO, FileHandler, Formatter
 
+dir_name = os.path.dirname(__file__)
 logger = getLogger()
 
 
 # Функция для логирования. На вход принимает имя файла и имя папки)
 def get_logs(filename, logs_folder_name):
-    LOGS_PATH = f'{os.getcwd()}\\{logs_folder_name}'
+    LOGS_PATH = f'{dir_name}\\{logs_folder_name}'
 
     if not os.path.isdir(LOGS_PATH):
         os.mkdir(LOGS_PATH)
