@@ -1,4 +1,5 @@
 from datetime import time, datetime, timedelta, date
+import os
 import configparser
 from api import get_api
 from logs import get_logs
@@ -7,8 +8,10 @@ from data_aggregation import do_data_agregation
 from googlesheets import post_to_sheets
 from email_report import Email
 
+
+dir_name = os.path.dirname(__file__)
 config = configparser.ConfigParser(interpolation=None)
-config.read('config.ini', encoding='UTF-8')
+config.read(os.path.join(dir_name, 'config.ini'), encoding='UTF-8')
 
 LOGS = config['Logs']
 PARAMS = config['Params']
