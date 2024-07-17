@@ -19,7 +19,6 @@ def do_data_agregation(data):
         'Кол-во правильных попыток в %'
     ]
     index_name = ['Дата']
-
     res.columns = columns_name
     res.index.names = index_name
 

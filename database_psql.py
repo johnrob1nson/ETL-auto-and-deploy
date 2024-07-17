@@ -6,7 +6,6 @@ logger = getLogger(__name__)
 
 # Класс для работы с PostgreSQL. Метод send_to_sql служит для отправки данных в базу.
 class PGDatabase:
-
     def __new__(cls, *args, **kwargs):
         if not hasattr(cls, 'instance'):
             cls.instance = super(PGDatabase, cls).__new__(cls)

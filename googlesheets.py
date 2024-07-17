@@ -42,7 +42,6 @@ def post_to_sheets(data, sheet_id, credentials_file_name):
                         continue
                     else:
                         sheet.sheet1.append_row(rows)
-
             except Exception as E:
                 logger.error("Ошибка отправки: %s", E)
         logger.info('Загрузка завершена')

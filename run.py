@@ -20,7 +20,6 @@ SHEET = config['Google_Sheets']
 EMAIL = config['Email']
 
 name_file = f'{date.today()}.log'
-
 START = datetime.combine(datetime.now() - timedelta(days=1), time.min)
 END = datetime.combine(datetime.now() - timedelta(days=1), time.max)
 

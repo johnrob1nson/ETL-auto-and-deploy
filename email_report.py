@@ -18,7 +18,6 @@ class Email:
         self.your_email = your_email
         self.password = password
 
-
     # Функция формирует диапазон дат, за которые планируется загрузить отчёт, а также проверяет, есть ли в логах Error,
     @staticmethod
     def check_api_error(start, end, folder_name):
@@ -35,7 +34,6 @@ class Email:
                         result_msg = False
 
                 return date_report, result_msg
-
 
     def send_email(self, subject, body, recipient_email, date_report, result_msg):
         try:
