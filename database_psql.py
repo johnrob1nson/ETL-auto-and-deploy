@@ -1,4 +1,4 @@
-from logging import getLogger
+from logging import getLogger, INFO, ERROR
 import psycopg2
 
 logger = getLogger(__name__)
@@ -6,12 +6,11 @@ logger = getLogger(__name__)
 
 # Класс для работы с PostgreSQL. Метод send_to_sql служит для отправки данных в базу.
 class PGDatabase:
-    _instance = None
 
     def __new__(cls, *args, **kwargs):
         if not hasattr(cls, 'instance'):
-            cls._instance = super().__new__(cls)
-        return cls._instance
+            cls.instance = super(PGDatabase, cls).__new__(cls)
+        return cls.instance
 
     def __init__(self, database, user, password, host, port):
         self.database = database

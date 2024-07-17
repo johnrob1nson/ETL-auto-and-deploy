@@ -26,6 +26,7 @@ get_logs(name_file, LOGS['logs_path'])
 if __name__ == '__main__':
     # Получаем данные по API
     data_api = get_api(PARAMS['client'], PARAMS['client_key'], start=START, end=END)
+    print(data_api)
     # Отправка данных в sql
     db = PGDatabase(
         database=DATABASE['database'],

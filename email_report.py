@@ -11,6 +11,7 @@ logger = getLogger(__name__)
 
 class Email:
     def __init__(self, smtp_email, port, your_email, password):
+        self.smtp_server = None
         self.smtp_email = smtp_email
         self.port = port
         self.your_email = your_email
@@ -38,7 +39,7 @@ class Email:
     def send_email(self, subject, body, recipient_email, date_report, result_msg):
         try:
             logger.info("Отправка сообщения %s", recipient_email)
-        # Создание защищенного соединения SSL
+            # Создание защищенного соединения SSL
             self.context = ssl.create_default_context()
             self.smtp_server = smtplib.SMTP_SSL(self.smtp_email, self.port, context=self.context)
             self.smtp_server.login(self.your_email, self.password)
@@ -53,8 +54,7 @@ class Email:
             msg['To'] = recipient_email
             self.smtp_server.send_message(msg=msg)
             logger.info('Сообщение отправлено успешно')
+        except TimeoutError as T:
+            logger.error("Ошибка таймаута %s", T)
         except Exception as e:
-            logger.error("Ошибка отправки")
-
-
-
+            logger.error("Ошибка отправки %s", e)
