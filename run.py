@@ -20,14 +20,17 @@ SHEET = config['Google_Sheets']
 EMAIL = config['Email']
 
 name_file = f'{date.today()}.log'
+
+#день (дни), данные за которые планируется загружать и обрабатывать
 START = datetime.combine(datetime.now() - timedelta(days=1), time.min)
 END = datetime.combine(datetime.now() - timedelta(days=1), time.max)
 
+# Запускаем логирование
 get_logs(name_file, LOGS['logs_path'])
 
 if __name__ == '__main__':
     # Получаем данные по API
-    data_api = get_api(PARAMS['client'], PARAMS['client_key'], start=START, end=END)
+    data_api = get_api(PARAMS['client'], PARAMS['client_key'], PARAMS['api_url'], start=START, end=END)
     # Отправка данных в sql
     db = PGDatabase(
         database=DATABASE['database'],

@@ -7,10 +7,9 @@ logger = getLogger(__name__)
 
 
 # Функция получения API и его обработка. Принимает аргументы: время начала и конца
-def get_api(client, client_key, start, end):
+def get_api(client, client_key, api_url, start, end):
     logger.info("Подключаемся к API")
     params = {'client': client, 'client_key': client_key, 'start': start, 'end': end}
-    api_url = "https://b2b.itresume.ru/api/statistics"
     logger.info("Скачиваем данные из %s", api_url)
     try:
         response = requests.get(api_url, params=params)
