@@ -1,8 +1,8 @@
 from datetime import time, datetime, timedelta, date
 import os
 import configparser
-from api import get_api
 from logs import get_logs
+from api import get_api
 from database_psql import PGDatabase
 from data_aggregation import do_data_agregation
 from googlesheets import post_to_sheets
@@ -21,7 +21,7 @@ EMAIL = config['Email']
 
 name_file = f'{date.today()}.log'
 
-#день (дни), данные за которые планируется загружать и обрабатывать
+# День (дни), данные за которые планируется загружать и обрабатывать
 START = datetime.combine(datetime.now() - timedelta(days=1), time.min)
 END = datetime.combine(datetime.now() - timedelta(days=1), time.max)
 
