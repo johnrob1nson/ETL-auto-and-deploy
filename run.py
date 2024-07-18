@@ -7,7 +7,10 @@ from database_psql import PGDatabase
 from data_aggregation import do_data_agregation
 from googlesheets import post_to_sheets
 from email_report import Email
+import pandas as pd
 
+pd.set_option('display.max_rows', 100)
+pd.set_option('display.max_columns', 100)
 
 dir_name = os.path.dirname(__file__)
 config = configparser.ConfigParser(interpolation=None)
@@ -48,5 +51,3 @@ if __name__ == '__main__':
     em = Email(EMAIL['smtp_email'], EMAIL['port'], EMAIL['your_email'], EMAIL['password'])
     check_result = em.check_api_error(START, END, LOGS['logs_path'])
     em.send_email(EMAIL['subject'], EMAIL['body'], EMAIL['recipient_email'], check_result[0], check_result[1])
-
-

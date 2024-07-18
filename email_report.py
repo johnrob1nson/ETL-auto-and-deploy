@@ -18,7 +18,7 @@ class Email:
         self.your_email = your_email
         self.password = password
 
-    # Функция формирует диапазон дат, за которые планируется загрузить отчёт, а также проверяет, есть ли в логах Error,
+    # Функция формирует диапазон дат, за которые загружается отчёт, а также проверяет, есть ли в логах Error,
     @staticmethod
     def check_api_error(start, end, folder_name):
         RANGE_DATE = pd.date_range(start.date() + timedelta(days=1), end.date() + timedelta(days=1)).strftime(
@@ -28,10 +28,10 @@ class Email:
         for file in lst_dir:
             if re.search(r'\d{4}-\d{2}-\d{2}', file).group() in RANGE_DATE:
                 date_report = ', '.join(RANGE_DATE)
-                result_msg = True
+                result_msg = False
                 with open(os.path.join(LOGS_PATH, file)) as fl:
                     if 'ERROR' in fl.read():
-                        result_msg = False
+                        result_msg = True
 
                 return date_report, result_msg
 
@@ -44,9 +44,9 @@ class Email:
             self.smtp_server.login(self.your_email, self.password)
             msg = EmailMessage()
             if result_msg:
-                result_msg = 'успешно'
-            else:
                 result_msg = 'с ошибкой'
+            else:
+                result_msg = 'успешно'
             msg.set_content(body.format(date_report=date_report, result_msg=result_msg))
             msg['Subject'] = subject
             msg['From'] = self.your_email
