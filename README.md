@@ -109,7 +109,8 @@ CREATE TABLE public.url (
 ##### Метод **send_email** Отправляет письмо. 
 На вход принимает: Заголовок письма; тело письма; email получателя; даты (из check_api_error), за которые делаем отчёт; True/False (есть ли ошибка или нет; также из check_api_error)
 #### Результат:
-![image](https://github.com/user-attachments/assets/6c555d4f-5644-43f7-8339-79723f662e22)
+![image](https://github.com/user-attachments/assets/fd9778bf-c15d-4093-a7d4-337b8aa61026)
+
 ## Настройка сервера (У меня Ubuntu 22.04.4 LTS)
 ### Необходимые программы для запуска скрипта 
 + pip 22.0.2
