@@ -129,7 +129,7 @@ source .venv/bin/activate
 pip install -r requirements.txt
 </code></pre><p>
 
-### Запуск скрипта
+## Запуск скрипта
 #### !!! Важно !!! Перед тем как запускать данный скрипт в файле config.ini нужно добавить свои данные. 
 </p><pre>
 python3 run.py
@@ -140,7 +140,7 @@ python3 run.py
 ![image](https://github.com/user-attachments/assets/a3e1d38b-c1ff-44b4-b76d-9eb398478819)
 
 
-### Автоматизация
+## Автоматизация
 </p><pre>
 EDITOR=nano crontab -e
 </code></pre><p>
@@ -149,13 +149,13 @@ EDITOR=nano crontab -e
   
 ![image](https://github.com/user-attachments/assets/dc9935e7-d604-43b1-a48b-107b1809c196)
 
-### Запуск Metabase
+## Запуск Metabase
 </p><pre>
 cd etc/nginx
 nano nginx.conf
 </code></pre><p>
   
-#### Вставляем туда (вместо 3002 прописываем имя порта, которое указали при установки Metabase container ):
+#### Вставляем в открытый файл код (место 3002 прописываем имя порта, которое указали при установки Metabase container ):
 </p><pre>  
 server {
         listen 3002;
