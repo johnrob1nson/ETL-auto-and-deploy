@@ -39,5 +39,8 @@ def get_api(client, client_key, api_url, start, end):
 
         return df
 
-    except Exception as e:
-        logger.error('Ошибка скачивания %s', e)
+    except requests.exceptions.RequestException as err:
+        logger.error('Ошибка при загрузке данных %s', err)
+
+    except Exception as err:
+        logger.error('Ошибка скачивания %s', err)
