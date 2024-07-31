@@ -145,7 +145,7 @@ python3 run.py
 EDITOR=nano crontab -e
 </code></pre><p>
 
-* 01 * * * периодичность * * * * * (~ каждый день в час ночи)  ;  путь до интерпретатора  ;  путь до исполняемого файла
+01 07 * * * периодичность * * * * * (~ каждый день в 7 часов 1 минуту)  ;  путь до интерпретатора  ;  путь до исполняемого файла
   
 ![image](https://github.com/user-attachments/assets/dc9935e7-d604-43b1-a48b-107b1809c196)
 
@@ -170,4 +170,6 @@ server {
 #### Переходим по адресу IP сервера:3002 и работаем с Metabase. (При запуске и регистрации, подключение можно настроить по SSH)
 
 #### Результат:
-![image](https://github.com/user-attachments/assets/94689402-a1f2-45ef-9a1f-eb1bbaf5ee0a)
+![image](https://github.com/user-attachments/assets/fc10a855-3dcd-415f-a84a-54b4ac08c2c7)
+
+
