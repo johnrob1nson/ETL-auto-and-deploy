@@ -1,4 +1,4 @@
-from logging import getLogger, INFO, ERROR
+from logging import getLogger
 import psycopg2
 
 logger = getLogger(__name__)
@@ -34,17 +34,23 @@ class PGDatabase:
             logger.error('Ошибка загрузки данных %s', TE)
         except UnicodeDecodeError as UE:
             logger.error('Ошибка подключения %s', UE)
+        except TimeoutError as TmE:
+            logger.error('Ошибка подключения %s', TmE)
+
 
     def send_to_sql(self, data):
         logger.info('Загружаем данные в базу данных "%s"', self.database)
-        for row in data:
-            placeholders = ', '.join(['%s'] * len(row))
-            columns = ', '.join(row.keys())
-            values = list(row.values())
-            query = "INSERT INTO URL ( %s ) VALUES ( %s ) ON CONFLICT DO NOTHING" % (columns, placeholders)
-            try:
-                self.cursor.execute(query, values)
-            except Exception as e:
-                logger.error("Ошибка загрузки: %s", e)
-                break
+        try:
+            for row in data:
+                placeholders = ', '.join(['%s'] * len(row))
+                columns = ', '.join(row.keys())
+                values = list(row.values())
+                query = "INSERT INTO URL ( %s ) VALUES ( %s ) ON CONFLICT DO NOTHING" % (columns, placeholders)
+                try:
+                    self.cursor.execute(query, values)
+                except Exception as e:
+                    logger.error("Ошибка загрузки: %s", e)
+                    break
+        finally:
+            self.cursor.close()
         logger.info('Загрузка завершена')
